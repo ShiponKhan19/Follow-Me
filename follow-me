@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SHIPON KHAN</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            width: 100%;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 20%, #fad0c4 40%, #a18cd1 60%, #a18cd1 80%, #fbc2eb 100%);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            transition: all 0.5s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        body.night-mode {
+            background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
+        }
+        
+        @keyframes gradient {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 360px;
+            height: 640px;
+            background-color: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 20px;
+            position: relative;
+            transition: all 0.5s ease;
+            z-index: 10;
+        }
+        
+        body.night-mode .container {
+            background-color: rgba(0, 0, 0, 0.3);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+        }
+        
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            margin-bottom: 30px;
+            z-index: 2;
+            transition: all 0.5s ease;
+        }
+        
+        body.night-mode .profile-img {
+            border-color: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+        }
+        
+        h1 {
+            color: white;
+            font-size: 28px;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            transition: all 0.5s ease;
+        }
+        
+        body.night-mode h1 {
+            color: #fff;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+        }
+        
+        .arabic-text {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 24px;
+            margin-bottom: 40px;
+            text-align: center;
+            max-width: 80%;
+            transition: all 0.5s ease;
+            font-family: 'Noto Naskh Arabic', serif;
+            direction: rtl;
+            line-height: 1.8;
+        }
+        
+        body.night-mode .arabic-text {
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .social-container {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .social-link {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            background-color: rgba(255, 255, 255, 0.2);
+            padding: 15px 25px;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        body.night-mode .social-link {
+            background-color: rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .social-link:hover {
+            transform: translateY(-5px);
+            background-color: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        body.night-mode .social-link:hover {
+            background-color: rgba(0, 0, 0, 0.3);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .social-icon {
+            width: 30px;
+            height: 30px;
+            margin-right: 15px;
+        }
+        
+        .social-text {
+            color: white;
+            font-weight: 600;
+            font-size: 16px;
+        }
+        
+        .circle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            transition: all 0.5s ease;
+        }
+        
+        .circle-1 {
+            width: 200px;
+            height: 200px;
+            top: -50px;
+            left: -50px;
+        }
+        
+        .circle-2 {
+            width: 150px;
+            height: 150px;
+            bottom: -30px;
+            right: -30px;
+        }
+        
+        /* Night mode elements */
+        .moon {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            background: #f5f3ce;
+            border-radius: 50%;
+            top: 50px;
+            right: 50px;
+            box-shadow: 0 0 30px #f5f3ce;
+            opacity: 0;
+            transition: all 0.5s ease;
+            z-index: 1;
+        }
+        
+        body.night-mode .moon {
+            opacity: 1;
+        }
+        
+        .star {
+            position: absolute;
+            background-color: white;
+            border-radius: 50%;
+            opacity: 0;
+            transition: all 0.5s ease;
+            z-index: 1;
+        }
+        
+        body.night-mode .star {
+            opacity: 1;
+        }
+        
+        .toggle-container {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 100;
+        }
+        
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 30px;
+        }
+        
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(255, 255, 255, 0.3);
+            transition: .4s;
+            border-radius: 34px;
+        }
+        
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 22px;
+            width: 22px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        
+        input:checked + .slider {
+            background-color: rgba(0, 0, 0, 0.3);
+        }
+        
+        input:checked + .slider:before {
+            transform: translateX(30px);
+            background-color: #333;
+        }
+        
+        .toggle-icon {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: white;
+            font-size: 14px;
+            pointer-events: none;
+        }
+        
+        .sun {
+            left: 8px;
+        }
+        
+        .moon-icon {
+            right: 8px;
+        }
+        
+        /* Galaxy elements */
+        .galaxy {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease;
+            z-index: 0;
+            pointer-events: none;
+        }
+        
+        body.night-mode .galaxy {
+            opacity: 0.3;
+        }
+        
+        /* Floating particles */
+        .particle {
+            position: absolute;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        body.night-mode .particle {
+            background-color: rgba(173, 216, 230, 0.6);
+        }
+    </style>
+</head>
+<body>
+    <div class="toggle-container">
+        <label class="toggle-switch">
+            <input type="checkbox" id="night-mode-toggle">
+            <span class="slider"></span>
+            <span class="toggle-icon sun">☀️</span>
+            <span class="toggle-icon moon-icon">🌙</span>
+        </label>
+    </div>
+    
+    <div class="container">
+        <div class="circle circle-1"></div>
+        <div class="circle circle-2"></div>
+        
+        <img src="https://i.postimg.cc/K1Mr15dN/image.jpg" alt="Profile Image" class="profile-img">
+        
+        <h1>SHIPON KHAN</h1>
+        <p class="arabic-text">لَا إِلَٰهَ إِلَّا ٱللَّٰهُ مُحَمَّدٌ رَسُولُ ٱللَّٰهِ</p>
+        
+        <div class="social-container">
+            <a href="https://wa.me/8801234567890" class="social-link" target="_blank">
+                <img src="https://www.svgrepo.com/show/475697/whatsapp-color.svg" alt="WhatsApp" class="social-icon">
+                <span class="social-text">WhatsApp</span>
+            </a>
+            
+            <a href="https://www.facebook.com/share/18xXmdwsEN/" class="social-link" target="_blank">
+                <img src="https://www.svgrepo.com/show/475647/facebook-color.svg" alt="Facebook" class="social-icon">
+                <span class="social-text">Facebook</span>
+            </a>
+            
+            <a href="https://instagram.com/shiponkhan" class="social-link" target="_blank">
+                <img src="https://www.svgrepo.com/show/475689/instagram-color.svg" alt="Instagram" class="social-icon">
+                <span class="social-text">Instagram</span>
+            </a>
+            
+            <a href="https://t.me/shiponkhan" class="social-link" target="_blank">
+                <img src="https://www.svgrepo.com/show/475708/telegram-color.svg" alt="Telegram" class="social-icon">
+                <span class="social-text">Telegram</span>
+            </a>
+        </div>
+    </div>
+    
+    <div class="moon"></div>
+    <div class="galaxy" id="galaxy"></div>
+    
+    <script>
+        // Night mode toggle functionality
+        const nightModeToggle = document.getElementById('night-mode-toggle');
+        const body = document.body;
+        const galaxy = document.getElementById('galaxy');
+        
+        // Function to enable night mode
+        function enableNightMode() {
+            body.classList.add('night-mode');
+            nightModeToggle.checked = true;
+            createStars();
+            createGalaxy();
+            createParticles();
+        }
+        
+        // Function to disable night mode
+        function disableNightMode() {
+            body.classList.remove('night-mode');
+            nightModeToggle.checked = false;
+            removeStars();
+            galaxy.innerHTML = '';
+            removeParticles();
+        }
+        
+        // Check system preference first
+        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        
+        // Check for saved user preference or use system preference
+        const userPrefersDark = localStorage.getItem('nightMode') === 'enabled';
+        const userPrefersLight = localStorage.getItem('nightMode') === 'disabled';
+        
+        if (userPrefersDark) {
+            enableNightMode();
+        } else if (userPrefersLight) {
+            disableNightMode();
+        } else if (systemPrefersDark) {
+            enableNightMode();
+        } else {
+            createParticles(); // Create daytime particles
+        }
+        
+        // Listen for system preference changes
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+            if (localStorage.getItem('nightMode') === null) {
+                if (e.matches) {
+                    enableNightMode();
+                } else {
+                    disableNightMode();
+                    createParticles();
+                }
+            }
+        });
+        
+        nightModeToggle.addEventListener('change', function() {
+            if (this.checked) {
+                localStorage.setItem('nightMode', 'enabled');
+                enableNightMode();
+            } else {
+                localStorage.setItem('nightMode', 'disabled');
+                disableNightMode();
+                createParticles();
+            }
+        });
+        
+        // Create stars for night mode
+        function createStars() {
+            // Remove existing stars first
+            removeStars();
+            
+            // Create stars
+            for (let i = 0; i < 100; i++) {
+                const star = document.createElement('div');
+                star.classList.add('star');
+                
+                // Random size between 1-3px
+                const size = Math.random() * 2 + 1;
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+                
+                // Random position
+                star.style.left = `${Math.random() * 100}%`;
+                star.style.top = `${Math.random() * 100}%`;
+                
+                // Random opacity
+                star.style.opacity = Math.random();
+                
+                // Random animation for twinkling
+                star.style.animation = `twinkle ${Math.random() * 5 + 3}s infinite alternate`;
+                
+                document.body.appendChild(star);
+            }
+            
+            // Add some shooting stars
+            for (let i = 0; i < 3; i++) {
+                createShootingStar();
+            }
+        }
+        
+        function removeStars() {
+            const stars = document.querySelectorAll('.star');
+            stars.forEach(star => star.remove());
+        }
+        
+        function createShootingStar() {
+            const shootingStar = document.createElement('div');
+            shootingStar.classList.add('star');
+            shootingStar.style.width = '3px';
+            shootingStar.style.height = '3px';
+            shootingStar.style.boxShadow = '0 0 6px 1px white';
+            
+            // Start position (random top and right edge)
+            const startX = Math.random() * 100 + 100;
+            const startY = Math.random() * 30;
+            shootingStar.style.left = `${startX}%`;
+            shootingStar.style.top = `${startY}%`;
+            
+            // Animation
+            shootingStar.style.animation = `shoot ${Math.random() * 3 + 2}s linear`;
+            
+            document.body.appendChild(shootingStar);
+            
+            // Remove after animation completes
+            setTimeout(() => {
+                shootingStar.remove();
+                // Create a new one after a delay
+                setTimeout(createShootingStar, Math.random() * 10000 + 5000);
+            }, 3000);
+        }
+        
+        // Create galaxy elements
+        function createGalaxy() {
+            galaxy.innerHTML = '';
+            
+            // Create galaxy stars
+            for (let i = 0; i < 50; i++) {
+                const star = document.createElement('div');
+                star.style.position = 'absolute';
+                star.style.backgroundColor = 'white';
+                star.style.borderRadius = '50%';
+                
+                // Random size between 1-4px
+                const size = Math.random() * 3 + 1;
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+                
+                // Random position
+                star.style.left = `${Math.random() * 100}%`;
+                star.style.top = `${Math.random() * 100}%`;
+                
+                // Random opacity
+                star.style.opacity = Math.random() * 0.5 + 0.1;
+                
+                galaxy.appendChild(star);
+            }
+            
+            // Create galaxy clusters
+            for (let i = 0; i < 5; i++) {
+                const cluster = document.createElement('div');
+                cluster.style.position = 'absolute';
+                cluster.style.width = '150px';
+                cluster.style.height = '150px';
+                cluster.style.left = `${Math.random() * 100}%`;
+                cluster.style.top = `${Math.random() * 100}%`;
+                cluster.style.background = 'radial-gradient(circle, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 70%)';
+                cluster.style.borderRadius = '50%';
+                
+                galaxy.appendChild(cluster);
+            }
+        }
+        
+        // Create floating particles for day mode
+        function createParticles() {
+            removeParticles();
+            
+            for (let i = 0; i < 30; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // Random size between 2-6px
+                const size = Math.random() * 4 + 2;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                
+                // Random position
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.top = `${Math.random() * 100}%`;
+                
+                // Random opacity
+                particle.style.opacity = Math.random() * 0.5 + 0.3;
+                
+                // Random animation
+                const duration = Math.random() * 20 + 10;
+                const delay = Math.random() * 5;
+                particle.style.animation = `float ${duration}s linear ${delay}s infinite`;
+                
+                document.body.appendChild(particle);
+            }
+        }
+        
+        function removeParticles() {
+            const particles = document.querySelectorAll('.particle');
+            particles.forEach(particle => particle.remove());
+        }
+        
+        // Add CSS for animations
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes twinkle {
+                0% { opacity: 0.3; }
+                100% { opacity: 1; }
+            }
+            
+            @keyframes shoot {
+                0% {
+                    transform: translateX(0) translateY(0);
+                    opacity: 0;
+                }
+                10% {
+                    opacity: 1;
+                }
+                100% {
+                    transform: translateX(-100vw) translateY(100vh);
+                    opacity: 0;
+                }
+            }
+            
+            @keyframes float {
+                0% {
+                    transform: translateY(0) translateX(0);
+                    opacity: 0.3;
+                }
+                50% {
+                    opacity: 0.8;
+                }
+                100% {
+                    transform: translateY(-100vh) translateX(20px);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
